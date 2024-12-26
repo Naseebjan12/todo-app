@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='container text-center'>
+    <div class='row'>
+        <div class='col-sm-4 offset-sm-4 mt-4'>
+            <h3>Todo App </h3>
+            <form class='form-group' method='post'>
+                {% csrf_token %}
+            
+                <input type='text' placeholder='Enter Task ...' class='form-control' name='task' Required=''>
+
+                <input type='date' class='form-control mt-2' name='date',Required=''> 
+                <input type='text' class='form-control mt-2' name='description' placeholder='Task description' Required=''>
+                <button class='btn btn-success mt-2 ' >Add Task</button>
+                
+            </form>
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Task Title</th>
+                <th scope="col">Task Date</th>
+                <th scope="col">Task Description</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks  %}
+                <tr>
+                    
+                    <td>{{ task.task_title }}</td>
+                    <td>{{ task.date }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>
+                      <button class='btn btn-info'>Update</button> | 
+                      <button class='btn btn-danger'>Delete</button>
+                    </td>
+                    
+                  </tr>
+                  <tbody>
+                {% endfor %}
+                
+                
+        
+    </div>
+</div>
+
+{% endblock content %}
+
